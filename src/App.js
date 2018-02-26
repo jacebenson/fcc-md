@@ -26,18 +26,20 @@ class Marked extends React.Component {
   render() {
     return (
       <div className="container">
+      <div className="row">
         <div className="col-md-6">
         <textarea 
           onChange={this.onKeyUp} 
           defaultValue={this.mdValue}
           className="form-control form-control-lg" 
-          rows="20">
+          rows="40">
         </textarea>
         </div>
 
         <div className="col-md-6" >
         <span dangerouslySetInnerHTML={this.makeHtml()}></span>
         </div>
+      </div>
       </div>
     );
   }
