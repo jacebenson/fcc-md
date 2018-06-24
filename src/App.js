@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 //import 'https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js';
 var marked = require('marked');
+marked.setOptions({
+  breaks: true,
+});
+var renderer = new marked.Renderer();
+renderer.link = function (href, title, text) {
+  return `<a target="_blank" href="${href}">${text}` + '</a>';
+}
 
 class Marked extends React.Component {
   constructor(props) {
@@ -41,7 +48,8 @@ class Marked extends React.Component {
   }
 
   makeHtml () {
-    var htmlValue = marked(this.mdValue, {sanitize: true});
+    //var htmlValue = marked(this.mdValue, {sanitize: true});
+    var htmlValue = marked(this.mdValue, {renderer: renderer, sanitize: true});
     return {__html: htmlValue}
   }
   onKeyUp() {
